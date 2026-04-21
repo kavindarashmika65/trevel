@@ -1,0 +1,1030 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wanderlust — Discover Your Next Adventure</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,wght@0,300;0,400;0,600;1,300;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+<style>
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+:root{
+  --ocean:#0A4D8C;--ocean-mid:#1A6BB5;--ocean-light:#E8F2FB;--ocean-pale:#F0F7FF;
+  --sand:#F5EDD8;--sand-dark:#C9A96E;--coral:#E8604C;--coral-light:#FDECEA;
+  --ink:#0D1B2A;--ink-mid:#2D4059;--muted:#6B7F94;--border:#DCE8F2;
+  --white:#FFFFFF;--cream:#FAFAF7;
+  --font-display:'Fraunces',Georgia,serif;
+  --font-body:'DM Sans',system-ui,sans-serif;
+  --nav-h:68px;
+  --r:12px;--r-lg:20px;--r-xl:32px;
+}
+html{scroll-behavior:smooth;font-size:16px}
+body{font-family:var(--font-body);color:var(--ink);background:var(--cream);overflow-x:hidden}
+
+/* ── NAV ── */
+nav{position:fixed;top:0;left:0;right:0;z-index:1000;height:var(--nav-h);display:flex;align-items:center;padding:0 5%;transition:background .35s,box-shadow .35s;background:transparent}
+nav.scrolled{background:rgba(255,255,255,.97);box-shadow:0 1px 0 var(--border)}
+.nav-inner{display:flex;align-items:center;width:100%;max-width:1280px;margin:0 auto;gap:2rem}
+.logo{font-family:var(--font-display);font-size:1.5rem;font-weight:600;color:var(--white);letter-spacing:-.02em;text-decoration:none;transition:color .3s;flex-shrink:0}
+nav.scrolled .logo{color:var(--ocean)}
+.nav-links{display:flex;gap:1.75rem;list-style:none;margin-left:auto}
+.nav-links a{font-size:.875rem;font-weight:400;color:rgba(255,255,255,.88);text-decoration:none;letter-spacing:.01em;transition:color .2s;white-space:nowrap}
+nav.scrolled .nav-links a{color:var(--ink-mid)}
+.nav-links a:hover{color:var(--white)}
+nav.scrolled .nav-links a:hover{color:var(--ocean)}
+.nav-actions{display:flex;gap:.75rem;margin-left:1.5rem;flex-shrink:0}
+.btn{display:inline-flex;align-items:center;gap:.4rem;padding:.55rem 1.25rem;border-radius:50px;font-size:.875rem;font-weight:500;cursor:pointer;transition:all .22s;border:1.5px solid transparent;text-decoration:none;font-family:var(--font-body);white-space:nowrap}
+.btn-ghost{border-color:rgba(255,255,255,.55);color:var(--white);background:transparent}
+.btn-ghost:hover{background:rgba(255,255,255,.12);border-color:rgba(255,255,255,.8)}
+nav.scrolled .btn-ghost{border-color:var(--ocean);color:var(--ocean)}
+nav.scrolled .btn-ghost:hover{background:var(--ocean-light)}
+.btn-primary{background:var(--ocean);color:var(--white);border-color:var(--ocean)}
+.btn-primary:hover{background:#0d5ca3;transform:translateY(-1px);box-shadow:0 4px 16px rgba(10,77,140,.35)}
+.btn-coral{background:var(--coral);color:var(--white);border-color:var(--coral)}
+.btn-coral:hover{background:#d0503d;transform:translateY(-1px);box-shadow:0 4px 16px rgba(232,96,76,.35)}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:4px;background:none;border:none}
+.hamburger span{width:22px;height:2px;background:var(--white);border-radius:2px;transition:all .3s}
+nav.scrolled .hamburger span{background:var(--ink)}
+
+/* ── HERO ── */
+.hero{position:relative;height:100svh;min-height:600px;display:flex;align-items:flex-end;padding-bottom:8vh;overflow:hidden}
+.hero-bg{position:absolute;inset:0;background:
+  linear-gradient(to bottom,rgba(5,18,38,.15) 0%,rgba(5,18,38,.55) 100%),
+  url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=85') center/cover no-repeat;
+  animation:heroZoom 18s ease-in-out infinite alternate}
+@keyframes heroZoom{from{transform:scale(1)}to{transform:scale(1.06)}}
+.hero-slides{position:absolute;inset:0;display:flex}
+.slide{position:absolute;inset:0;opacity:0;transition:opacity 1.2s;background-size:cover;background-position:center}
+.slide.active{opacity:1}
+.slide:nth-child(1){background-image:linear-gradient(to bottom,rgba(5,18,38,.1) 0%,rgba(5,18,38,.55) 100%),url('https://images.unsplash.com/photo-1506905925346-21bda4d32df4?w=1800&q=80')}
+.slide:nth-child(2){background-image:linear-gradient(to bottom,rgba(5,18,38,.1) 0%,rgba(5,18,38,.55) 100%),url('https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=1800&q=80')}
+.slide:nth-child(3){background-image:linear-gradient(to bottom,rgba(5,18,38,.1) 0%,rgba(5,18,38,.55) 100%),url('https://images.unsplash.com/photo-1488085061387-422e29b40080?w=1800&q=80')}
+.hero-content{position:relative;z-index:2;max-width:1280px;margin:0 auto;padding:0 5%;width:100%}
+.hero-tag{display:inline-block;font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);margin-bottom:1rem;opacity:0;animation:fadeUp .8s .3s forwards}
+.hero-title{font-family:var(--font-display);font-size:clamp(2.6rem,6vw,5rem);font-weight:300;color:var(--white);line-height:1.1;letter-spacing:-.03em;margin-bottom:1.5rem;opacity:0;animation:fadeUp .8s .5s forwards}
+.hero-title em{font-style:italic;font-weight:300}
+.hero-sub{font-size:clamp(1rem,1.5vw,1.15rem);color:rgba(255,255,255,.75);max-width:480px;line-height:1.65;margin-bottom:2.5rem;font-weight:300;opacity:0;animation:fadeUp .8s .7s forwards}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap;opacity:0;animation:fadeUp .8s .9s forwards}
+.hero-dots{position:absolute;bottom:2rem;right:5%;display:flex;gap:.5rem;z-index:3}
+.dot{width:6px;height:6px;border-radius:50%;background:rgba(255,255,255,.4);cursor:pointer;transition:all .3s}
+.dot.active{background:var(--white);width:22px;border-radius:3px}
+@keyframes fadeUp{from{opacity:0;transform:translateY(20px)}to{opacity:1;transform:translateY(0)}}
+
+/* ── SEARCH BAR ── */
+.search-float{position:relative;z-index:10;max-width:1000px;margin:-2.5rem auto 0;padding:0 5%}
+.search-card{background:var(--white);border-radius:var(--r-xl);box-shadow:0 20px 60px rgba(10,77,140,.15);padding:1.5rem 1.75rem;display:flex;align-items:center;gap:0;flex-wrap:wrap}
+.search-group{flex:1;min-width:160px;padding:.5rem 1.25rem;border-right:1.5px solid var(--border);position:relative}
+.search-group:last-of-type{border-right:none}
+.sg-label{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-bottom:.25rem}
+.sg-input{display:flex;align-items:center;gap:.5rem}
+.sg-input input,.sg-input select{border:none;outline:none;font-family:var(--font-body);font-size:.95rem;color:var(--ink);background:transparent;width:100%;cursor:pointer}
+.sg-input input::placeholder{color:var(--muted)}
+.sg-icon{font-size:1.1rem;flex-shrink:0;color:var(--ocean)}
+.search-btn{margin-left:1rem;flex-shrink:0}
+
+/* ── SECTION COMMONS ── */
+section{padding:5rem 5%}
+.section-inner{max-width:1280px;margin:0 auto}
+.section-header{margin-bottom:3rem}
+.section-tag{font-size:.78rem;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--ocean);margin-bottom:.6rem}
+.section-title{font-family:var(--font-display);font-size:clamp(1.8rem,3.5vw,2.6rem);font-weight:300;color:var(--ink);letter-spacing:-.02em;line-height:1.2}
+.section-title em{font-style:italic}
+.section-sub{color:var(--muted);max-width:500px;margin-top:.75rem;line-height:1.65;font-size:.95rem}
+.section-row{display:flex;justify-content:space-between;align-items:flex-end;margin-bottom:2.5rem;flex-wrap:wrap;gap:1rem}
+
+/* ── DESTINATIONS GRID ── */
+.dest-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.dest-card{border-radius:var(--r-lg);overflow:hidden;background:var(--white);box-shadow:0 2px 16px rgba(10,77,140,.07);transition:transform .3s,box-shadow .3s;cursor:pointer}
+.dest-card:hover{transform:translateY(-6px);box-shadow:0 12px 40px rgba(10,77,140,.15)}
+.dest-img{position:relative;height:220px;overflow:hidden}
+.dest-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.dest-card:hover .dest-img img{transform:scale(1.07)}
+.dest-badge{position:absolute;top:.85rem;left:.85rem;background:var(--white);border-radius:50px;padding:.25rem .75rem;font-size:.75rem;font-weight:500;color:var(--ocean)}
+.dest-fav{position:absolute;top:.85rem;right:.85rem;width:32px;height:32px;border-radius:50%;background:rgba(255,255,255,.9);display:flex;align-items:center;justify-content:center;cursor:pointer;font-size:.9rem;transition:transform .2s,background .2s}
+.dest-fav:hover{transform:scale(1.15);background:var(--white)}
+.dest-fav.liked{color:var(--coral)}
+.dest-body{padding:1.1rem 1.25rem 1.25rem}
+.dest-location{font-size:.78rem;color:var(--muted);letter-spacing:.04em;margin-bottom:.35rem;display:flex;align-items:center;gap:.3rem}
+.dest-name{font-family:var(--font-display);font-size:1.2rem;font-weight:400;color:var(--ink);margin-bottom:.5rem}
+.dest-desc{font-size:.85rem;color:var(--muted);line-height:1.6;margin-bottom:1rem}
+.dest-footer{display:flex;align-items:center;justify-content:space-between}
+.stars{display:flex;gap:2px;align-items:center}
+.star{color:var(--sand-dark);font-size:.85rem}
+.rating-num{font-size:.82rem;font-weight:500;color:var(--ink-mid);margin-left:.3rem}
+.price-tag{font-family:var(--font-display);font-size:1.1rem;color:var(--ocean)}
+.price-from{font-size:.72rem;font-family:var(--font-body);font-weight:400;color:var(--muted);display:block;text-align:right}
+
+/* ── FEATURED HOTELS ── */
+.hotels-section{background:var(--ocean-pale)}
+.hotels-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.hotel-card{background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 2px 16px rgba(10,77,140,.07);transition:transform .3s,box-shadow .3s}
+.hotel-card:hover{transform:translateY(-5px);box-shadow:0 10px 36px rgba(10,77,140,.13)}
+.hotel-img{height:190px;overflow:hidden;position:relative}
+.hotel-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.hotel-card:hover .hotel-img img{transform:scale(1.06)}
+.hotel-grade{position:absolute;bottom:.75rem;left:.75rem;background:var(--ocean);color:var(--white);font-size:.72rem;font-weight:500;padding:.2rem .6rem;border-radius:4px;letter-spacing:.06em}
+.hotel-body{padding:1.1rem 1.25rem 1.25rem}
+.hotel-name{font-family:var(--font-display);font-size:1.15rem;font-weight:400;color:var(--ink);margin-bottom:.25rem}
+.hotel-loc{font-size:.8rem;color:var(--muted);margin-bottom:.65rem;display:flex;align-items:center;gap:.3rem}
+.amenities{display:flex;gap:.5rem;flex-wrap:wrap;margin-bottom:1rem}
+.amenity{font-size:.75rem;background:var(--ocean-light);color:var(--ocean);padding:.2rem .65rem;border-radius:50px;font-weight:500}
+.hotel-footer{display:flex;align-items:center;justify-content:space-between}
+.hotel-price{font-family:var(--font-display);font-size:1.15rem;color:var(--ocean)}
+.hotel-night{font-size:.72rem;color:var(--muted);font-family:var(--font-body)}
+
+/* ── PACKAGES ── */
+.pkg-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(340px,1fr));gap:1.75rem}
+.pkg-card{border-radius:var(--r-lg);overflow:hidden;position:relative;min-height:380px;display:flex;flex-direction:column;justify-content:flex-end;cursor:pointer;box-shadow:0 4px 20px rgba(10,77,140,.12);transition:transform .3s,box-shadow .3s}
+.pkg-card:hover{transform:translateY(-6px);box-shadow:0 16px 48px rgba(10,77,140,.2)}
+.pkg-img{position:absolute;inset:0;background-size:cover;background-position:center;transition:transform .5s}
+.pkg-card:hover .pkg-img{transform:scale(1.06)}
+.pkg-overlay{position:absolute;inset:0;background:linear-gradient(to top,rgba(5,15,40,.8) 0%,rgba(5,15,40,.1) 60%)}
+.pkg-content{position:relative;z-index:2;padding:1.5rem}
+.pkg-tag{display:inline-block;background:var(--coral);color:var(--white);font-size:.72rem;font-weight:500;padding:.2rem .65rem;border-radius:4px;letter-spacing:.06em;text-transform:uppercase;margin-bottom:.75rem}
+.pkg-title{font-family:var(--font-display);font-size:1.4rem;font-weight:400;color:var(--white);margin-bottom:.4rem;line-height:1.2}
+.pkg-meta{display:flex;gap:1rem;color:rgba(255,255,255,.7);font-size:.82rem;margin-bottom:1rem;flex-wrap:wrap}
+.pkg-footer{display:flex;align-items:center;justify-content:space-between;margin-top:.5rem}
+.pkg-price{font-family:var(--font-display);font-size:1.6rem;color:var(--white)}
+.pkg-per{font-size:.78rem;color:rgba(255,255,255,.6);font-family:var(--font-body)}
+
+/* ── REVIEWS ── */
+.reviews-section{background:linear-gradient(135deg,var(--ocean) 0%,var(--ocean-mid) 100%);color:var(--white)}
+.reviews-section .section-tag{color:rgba(255,255,255,.6)}
+.reviews-section .section-title{color:var(--white)}
+.reviews-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(280px,1fr));gap:1.5rem}
+.review-card{background:rgba(255,255,255,.1);backdrop-filter:blur(10px);border:1px solid rgba(255,255,255,.15);border-radius:var(--r-lg);padding:1.5rem}
+.review-stars{display:flex;gap:3px;margin-bottom:1rem}
+.review-stars .star{color:#FBBF24;font-size:.9rem}
+.review-text{font-size:.9rem;line-height:1.7;color:rgba(255,255,255,.85);margin-bottom:1.25rem;font-weight:300}
+.reviewer{display:flex;align-items:center;gap:.75rem}
+.reviewer-avatar{width:40px;height:40px;border-radius:50%;object-fit:cover;border:2px solid rgba(255,255,255,.3)}
+.reviewer-name{font-weight:500;font-size:.9rem;color:var(--white)}
+.reviewer-dest{font-size:.78rem;color:rgba(255,255,255,.55)}
+
+/* ── BOOKING ── */
+.booking-section{background:var(--sand)}
+.booking-card{background:var(--white);border-radius:var(--r-xl);box-shadow:0 8px 40px rgba(10,77,140,.12);overflow:hidden;display:grid;grid-template-columns:1fr 1fr}
+.booking-left{padding:3rem;background:linear-gradient(135deg,var(--ocean) 0%,var(--ocean-mid) 100%);color:var(--white);display:flex;flex-direction:column;justify-content:center}
+.booking-left h2{font-family:var(--font-display);font-size:2rem;font-weight:300;margin-bottom:.75rem;line-height:1.2}
+.booking-left p{color:rgba(255,255,255,.75);font-size:.95rem;line-height:1.65;margin-bottom:2rem;font-weight:300}
+.booking-features{display:flex;flex-direction:column;gap:.75rem}
+.bf{display:flex;align-items:center;gap:.75rem;font-size:.875rem;color:rgba(255,255,255,.85)}
+.bf-icon{width:30px;height:30px;border-radius:50%;background:rgba(255,255,255,.15);display:flex;align-items:center;justify-content:center;font-size:.9rem;flex-shrink:0}
+.booking-right{padding:2.5rem}
+.form-row{display:grid;grid-template-columns:1fr 1fr;gap:1rem;margin-bottom:1rem}
+.form-group{display:flex;flex-direction:column;gap:.4rem;margin-bottom:1rem}
+.form-group label{font-size:.8rem;font-weight:500;color:var(--ink-mid);letter-spacing:.04em}
+.form-group input,.form-group select{padding:.65rem .9rem;border:1.5px solid var(--border);border-radius:var(--r);font-family:var(--font-body);font-size:.9rem;color:var(--ink);transition:border-color .2s,box-shadow .2s;outline:none;background:var(--cream)}
+.form-group input:focus,.form-group select:focus{border-color:var(--ocean);box-shadow:0 0 0 3px rgba(10,77,140,.1)}
+.form-row-2{display:grid;grid-template-columns:1fr 1fr;gap:1rem}
+.price-summary{background:var(--ocean-pale);border-radius:var(--r);padding:1rem 1.25rem;margin:1.25rem 0;border:1px solid var(--ocean-light)}
+.ps-row{display:flex;justify-content:space-between;font-size:.875rem;margin-bottom:.4rem}
+.ps-row.total{font-weight:500;color:var(--ink);border-top:1px solid var(--border);padding-top:.4rem;margin-top:.4rem}
+.ps-muted{color:var(--muted)}
+
+/* ── BLOG ── */
+.blog-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(300px,1fr));gap:1.5rem}
+.blog-card{background:var(--white);border-radius:var(--r-lg);overflow:hidden;box-shadow:0 2px 12px rgba(10,77,140,.06);transition:transform .3s,box-shadow .3s;cursor:pointer}
+.blog-card:hover{transform:translateY(-4px);box-shadow:0 10px 32px rgba(10,77,140,.12)}
+.blog-img{height:180px;overflow:hidden}
+.blog-img img{width:100%;height:100%;object-fit:cover;transition:transform .5s}
+.blog-card:hover .blog-img img{transform:scale(1.06)}
+.blog-body{padding:1.25rem}
+.blog-cat{font-size:.72rem;font-weight:500;letter-spacing:.08em;text-transform:uppercase;color:var(--ocean);margin-bottom:.5rem}
+.blog-title{font-family:var(--font-display);font-size:1.05rem;font-weight:400;color:var(--ink);margin-bottom:.5rem;line-height:1.4}
+.blog-meta{display:flex;align-items:center;gap:.5rem;font-size:.78rem;color:var(--muted)}
+.blog-meta-dot{width:3px;height:3px;border-radius:50%;background:var(--muted)}
+
+/* ── AI RECOMMENDER ── */
+.ai-section{background:linear-gradient(135deg,#0D1B2A 0%,#1A2F4A 100%);padding:5rem 5%}
+.ai-card{max-width:760px;margin:0 auto;text-align:center}
+.ai-card .section-tag{color:rgba(255,255,255,.5)}
+.ai-card .section-title{color:var(--white);margin:0 auto 1rem}
+.ai-card .section-sub{color:rgba(255,255,255,.55);margin:0 auto 2rem;max-width:460px}
+.ai-input-row{display:flex;gap:.75rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50px;padding:.5rem .5rem .5rem 1.5rem;backdrop-filter:blur(8px)}
+.ai-input-row input{flex:1;background:transparent;border:none;outline:none;font-family:var(--font-body);font-size:.95rem;color:var(--white);min-width:0}
+.ai-input-row input::placeholder{color:rgba(255,255,255,.35)}
+.ai-results{margin-top:1.5rem;display:none;text-align:left}
+.ai-results.show{display:block}
+.ai-result-item{display:flex;align-items:center;gap:1rem;background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.1);border-radius:var(--r);padding:1rem 1.25rem;margin-bottom:.75rem;cursor:pointer;transition:background .2s}
+.ai-result-item:hover{background:rgba(255,255,255,.12)}
+.ai-result-emoji{font-size:1.5rem;flex-shrink:0}
+.ai-result-info{flex:1}
+.ai-result-name{font-family:var(--font-display);font-size:1rem;color:var(--white);margin-bottom:.2rem}
+.ai-result-why{font-size:.82rem;color:rgba(255,255,255,.55);line-height:1.5}
+.ai-result-score{font-family:var(--font-display);font-size:1.1rem;color:var(--sand-dark)}
+.ai-loading{color:rgba(255,255,255,.5);font-size:.9rem;margin-top:1rem;display:none}
+.ai-loading.show{display:block}
+
+/* ── MAP ── */
+.map-section{background:var(--ocean-pale)}
+.map-container{border-radius:var(--r-xl);overflow:hidden;height:420px;background:var(--ocean-light);position:relative;box-shadow:0 8px 32px rgba(10,77,140,.15)}
+.map-placeholder{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;overflow:hidden}
+.map-svg-bg{position:absolute;inset:0}
+.map-pin{position:absolute;transform:translate(-50%,-100%);cursor:pointer;transition:transform .2s}
+.map-pin:hover{transform:translate(-50%,-100%) scale(1.15)}
+.pin-dot{width:12px;height:12px;border-radius:50%;background:var(--coral);border:2px solid var(--white);box-shadow:0 2px 8px rgba(0,0,0,.25)}
+.pin-ring{position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);width:28px;height:28px;border-radius:50%;border:2px solid var(--coral);opacity:.4;animation:pinPulse 2s infinite}
+@keyframes pinPulse{0%,100%{transform:translate(-50%,-50%) scale(1);opacity:.4}50%{transform:translate(-50%,-50%) scale(1.4);opacity:0}}
+.pin-label{position:absolute;left:50%;transform:translateX(-50%);bottom:calc(100% + 6px);background:var(--ink);color:var(--white);font-size:.72rem;white-space:nowrap;padding:.2rem .55rem;border-radius:4px}
+.map-overlay-info{position:absolute;top:1.25rem;left:1.25rem;background:var(--white);border-radius:var(--r);padding:1rem 1.25rem;box-shadow:0 4px 20px rgba(10,77,140,.12);min-width:180px}
+.map-overlay-info h4{font-family:var(--font-display);font-size:.95rem;margin-bottom:.35rem;color:var(--ink)}
+.map-overlay-info p{font-size:.78rem;color:var(--muted);line-height:1.5}
+
+/* ── FOOTER ── */
+footer{background:var(--ink);color:rgba(255,255,255,.75)}
+.footer-top{padding:4rem 5% 3rem;max-width:1280px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr 1fr;gap:3rem}
+.footer-brand .logo{color:var(--white);font-size:1.4rem}
+.footer-brand p{font-size:.875rem;line-height:1.7;margin:1rem 0 1.5rem;color:rgba(255,255,255,.5);font-weight:300}
+.social-links{display:flex;gap:.65rem}
+.social-link{width:36px;height:36px;border-radius:50%;background:rgba(255,255,255,.08);display:flex;align-items:center;justify-content:center;font-size:.85rem;cursor:pointer;transition:background .2s,transform .2s;text-decoration:none;color:rgba(255,255,255,.75)}
+.social-link:hover{background:var(--ocean);transform:translateY(-2px)}
+.footer-col h4{font-size:.82rem;font-weight:500;letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.4);margin-bottom:1.25rem}
+.footer-col ul{list-style:none}
+.footer-col li{margin-bottom:.6rem}
+.footer-col a{font-size:.875rem;color:rgba(255,255,255,.6);text-decoration:none;transition:color .2s}
+.footer-col a:hover{color:var(--white)}
+.newsletter-input{display:flex;margin-top:1rem;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.12);border-radius:50px;overflow:hidden}
+.newsletter-input input{flex:1;background:transparent;border:none;outline:none;padding:.65rem 1rem;font-size:.875rem;color:var(--white);font-family:var(--font-body)}
+.newsletter-input input::placeholder{color:rgba(255,255,255,.35)}
+.newsletter-btn{padding:.65rem 1.1rem;background:var(--ocean);border:none;cursor:pointer;color:var(--white);font-size:.85rem;font-weight:500;font-family:var(--font-body);transition:background .2s;white-space:nowrap}
+.newsletter-btn:hover{background:#0d5ca3}
+.footer-bottom{border-top:1px solid rgba(255,255,255,.08);padding:1.5rem 5%;max-width:1280px;margin:0 auto;display:flex;justify-content:space-between;align-items:center;font-size:.8rem;color:rgba(255,255,255,.35);flex-wrap:wrap;gap:.5rem}
+
+/* ── MODAL ── */
+.modal-overlay{position:fixed;inset:0;background:rgba(5,15,40,.7);z-index:2000;display:none;align-items:center;justify-content:center;padding:1.5rem;backdrop-filter:blur(4px)}
+.modal-overlay.open{display:flex}
+.modal{background:var(--white);border-radius:var(--r-xl);width:100%;max-width:440px;padding:2.5rem;position:relative;animation:modalIn .3s ease}
+@keyframes modalIn{from{opacity:0;transform:scale(.95) translateY(10px)}to{opacity:1;transform:scale(1) translateY(0)}}
+.modal-close{position:absolute;top:1rem;right:1rem;width:32px;height:32px;border-radius:50%;background:var(--cream);border:none;cursor:pointer;font-size:1rem;display:flex;align-items:center;justify-content:center;transition:background .2s;color:var(--ink-mid)}
+.modal-close:hover{background:var(--border)}
+.modal h2{font-family:var(--font-display);font-size:1.6rem;font-weight:300;color:var(--ink);margin-bottom:.4rem}
+.modal p{font-size:.875rem;color:var(--muted);margin-bottom:1.75rem}
+.modal-tabs{display:flex;gap:0;background:var(--cream);border-radius:50px;padding:.25rem;margin-bottom:1.75rem}
+.modal-tab{flex:1;padding:.5rem;border:none;background:transparent;border-radius:50px;font-family:var(--font-body);font-size:.875rem;cursor:pointer;transition:all .2s;font-weight:400;color:var(--muted)}
+.modal-tab.active{background:var(--white);color:var(--ink);font-weight:500;box-shadow:0 1px 4px rgba(0,0,0,.1)}
+.modal-form{display:none}
+.modal-form.active{display:block}
+.divider{display:flex;align-items:center;gap:.75rem;margin:1.25rem 0;font-size:.8rem;color:var(--muted)}
+.divider::before,.divider::after{content:'';flex:1;height:1px;background:var(--border)}
+.social-auth{display:flex;gap:.75rem}
+.social-auth-btn{flex:1;display:flex;align-items:center;justify-content:center;gap:.5rem;padding:.65rem;border:1.5px solid var(--border);border-radius:var(--r);background:var(--white);cursor:pointer;font-size:.85rem;font-weight:500;transition:all .2s;color:var(--ink);font-family:var(--font-body)}
+.social-auth-btn:hover{background:var(--cream);border-color:var(--ocean)}
+
+/* ── TOAST ── */
+.toast{position:fixed;bottom:2rem;right:2rem;background:var(--ink);color:var(--white);padding:1rem 1.5rem;border-radius:var(--r);font-size:.875rem;z-index:3000;transform:translateY(100px);opacity:0;transition:all .35s;box-shadow:0 8px 32px rgba(0,0,0,.25)}
+.toast.show{transform:translateY(0);opacity:1}
+.toast-icon{margin-right:.5rem}
+
+/* ── MOBILE ── */
+@media(max-width:900px){
+  .booking-card{grid-template-columns:1fr}
+  .booking-left{padding:2rem 2rem 1.5rem}
+  .booking-right{padding:1.75rem}
+  .footer-top{grid-template-columns:1fr 1fr;gap:2rem}
+  .footer-brand{grid-column:1/-1}
+}
+@media(max-width:700px){
+  .search-card{flex-direction:column;padding:1.25rem;gap:.25rem}
+  .search-group{border-right:none;border-bottom:1.5px solid var(--border);padding:.65rem .5rem}
+  .search-group:last-of-type{border-bottom:none}
+  .search-btn{width:100%;justify-content:center}
+  .form-row,.form-row-2{grid-template-columns:1fr}
+  .footer-top{grid-template-columns:1fr}
+  .footer-brand{grid-column:1}
+  .nav-links,.nav-actions{display:none}
+  .hamburger{display:flex}
+  .mobile-menu{display:flex;flex-direction:column;position:fixed;inset:0;background:var(--white);z-index:999;padding:6rem 2rem 2rem;gap:1.5rem;transform:translateX(100%);transition:transform .35s}
+  .mobile-menu.open{transform:translateX(0)}
+  .mobile-menu a{font-size:1.25rem;color:var(--ink);text-decoration:none;font-weight:400;border-bottom:1px solid var(--border);padding-bottom:1rem}
+}
+@media(max-width:480px){
+  section{padding:3.5rem 4%}
+  .hero-ctas{flex-direction:column}
+  .pkg-grid{grid-template-columns:1fr}
+  .modal{padding:1.75rem}
+}
+
+/* ── UTILS ── */
+.text-center{text-align:center}
+.text-center .section-sub{margin-left:auto;margin-right:auto}
+.reveal{opacity:0;transform:translateY(24px);transition:opacity .65s,transform .65s}
+.reveal.visible{opacity:1;transform:none}
+.reveal-delay-1{transition-delay:.1s}
+.reveal-delay-2{transition-delay:.2s}
+.reveal-delay-3{transition-delay:.3s}
+.reveal-delay-4{transition-delay:.4s}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="navbar">
+  <div class="nav-inner">
+    <a href="#" class="logo">Wanderlust</a>
+    <ul class="nav-links">
+      <li><a href="#destinations">Destinations</a></li>
+      <li><a href="#hotels">Hotels</a></li>
+      <li><a href="#packages">Packages</a></li>
+      <li><a href="#blog">Blog</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-actions">
+      <button class="btn btn-ghost" onclick="openModal('login')">Sign In</button>
+      <button class="btn btn-primary" onclick="openModal('signup')">Sign Up</button>
+    </div>
+    <button class="hamburger" onclick="toggleMobileMenu()" aria-label="Menu">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</nav>
+
+<!-- MOBILE MENU -->
+<div class="mobile-menu" id="mobileMenu">
+  <a href="#destinations" onclick="closeMobileMenu()">Destinations</a>
+  <a href="#hotels" onclick="closeMobileMenu()">Hotels</a>
+  <a href="#packages" onclick="closeMobileMenu()">Packages</a>
+  <a href="#blog" onclick="closeMobileMenu()">Blog</a>
+  <a href="#contact" onclick="closeMobileMenu()">Contact</a>
+  <button class="btn btn-primary" onclick="openModal('signup');closeMobileMenu()">Sign Up Free</button>
+</div>
+
+<!-- HERO -->
+<section class="hero" id="home">
+  <div class="hero-slides">
+    <div class="slide active"></div>
+    <div class="slide"></div>
+    <div class="slide"></div>
+  </div>
+  <div class="hero-content">
+    <p class="hero-tag">✦ Crafted Journeys for Curious Souls</p>
+    <h1 class="hero-title">Discover the world's<br><em>most breathtaking</em><br>destinations</h1>
+    <p class="hero-sub">Curated travel experiences tailored to your spirit of adventure. From hidden mountain escapes to sun-drenched coastal retreats.</p>
+    <div class="hero-ctas">
+      <a href="#packages" class="btn btn-primary" style="padding:.75rem 1.75rem;font-size:1rem">Explore Packages</a>
+      <a href="#destinations" class="btn btn-ghost" style="padding:.75rem 1.75rem;font-size:1rem">View Destinations</a>
+    </div>
+  </div>
+  <div class="hero-dots">
+    <div class="dot active" onclick="goToSlide(0)"></div>
+    <div class="dot" onclick="goToSlide(1)"></div>
+    <div class="dot" onclick="goToSlide(2)"></div>
+  </div>
+</section>
+
+<!-- SEARCH -->
+<div class="search-float">
+  <div class="search-card reveal">
+    <div class="search-group">
+      <div class="sg-label">Where to?</div>
+      <div class="sg-input">
+        <span class="sg-icon">🔍</span>
+        <input type="text" placeholder="City, country or resort..." id="searchInput">
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="sg-label">Check In</div>
+      <div class="sg-input">
+        <span class="sg-icon">📅</span>
+        <input type="date" id="checkIn">
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="sg-label">Check Out</div>
+      <div class="sg-input">
+        <span class="sg-icon">📅</span>
+        <input type="date" id="checkOut">
+      </div>
+    </div>
+    <div class="search-group">
+      <div class="sg-label">Guests</div>
+      <div class="sg-input">
+        <span class="sg-icon">👤</span>
+        <select>
+          <option>1 Person</option>
+          <option>2 People</option>
+          <option selected>2 Adults, 1 Child</option>
+          <option>4+ People</option>
+        </select>
+      </div>
+    </div>
+    <button class="btn btn-coral search-btn" onclick="handleSearch()">Search</button>
+  </div>
+</div>
+
+<!-- DESTINATIONS -->
+<section id="destinations" style="padding-top:6rem">
+  <div class="section-inner">
+    <div class="section-row">
+      <div class="section-header" style="margin-bottom:0">
+        <p class="section-tag">Popular Destinations</p>
+        <h2 class="section-title">Places that <em>inspire wonder</em></h2>
+        <p class="section-sub">From ancient temples to turquoise shores — each destination tells a story.</p>
+      </div>
+      <a href="#" class="btn btn-ghost" style="border-color:var(--ocean);color:var(--ocean)" onclick="showToast('Viewing all destinations…')">View All →</a>
+    </div>
+    <div class="dest-grid" id="destGrid"></div>
+  </div>
+</section>
+
+<!-- HOTELS -->
+<section id="hotels" class="hotels-section">
+  <div class="section-inner">
+    <div class="section-row">
+      <div class="section-header" style="margin-bottom:0">
+        <p class="section-tag">Featured Hotels</p>
+        <h2 class="section-title">Stay in <em>extraordinary</em> places</h2>
+        <p class="section-sub">Hand-picked hotels offering unmatched comfort and unforgettable views.</p>
+      </div>
+      <a href="#" class="btn btn-primary" onclick="showToast('Loading all hotels…');return false">Browse Hotels →</a>
+    </div>
+    <div class="hotels-grid" id="hotelsGrid"></div>
+  </div>
+</section>
+
+<!-- PACKAGES -->
+<section id="packages">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <p class="section-tag">Travel Packages</p>
+      <h2 class="section-title">All-inclusive <em>adventures await</em></h2>
+      <p class="section-sub">Everything handled — flights, stays, activities. Just pack your bags.</p>
+    </div>
+    <div class="pkg-grid" id="pkgGrid"></div>
+  </div>
+</section>
+
+<!-- REVIEWS -->
+<section class="reviews-section">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <p class="section-tag">Traveler Stories</p>
+      <h2 class="section-title">Real journeys, <em>real memories</em></h2>
+    </div>
+    <div class="reviews-grid" id="reviewsGrid"></div>
+  </div>
+</section>
+
+<!-- BOOKING -->
+<section class="booking-section" id="booking">
+  <div class="section-inner">
+    <div class="booking-card reveal">
+      <div class="booking-left">
+        <h2>Book your<br><em>dream escape</em></h2>
+        <p>Reserve your spot in seconds. Our concierge team will take care of the rest.</p>
+        <div class="booking-features">
+          <div class="bf"><div class="bf-icon">✓</div>Free cancellation up to 48h</div>
+          <div class="bf"><div class="bf-icon">🔒</div>Secure payment processing</div>
+          <div class="bf"><div class="bf-icon">💬</div>24/7 support team</div>
+          <div class="bf"><div class="bf-icon">🌟</div>Best price guarantee</div>
+        </div>
+      </div>
+      <div class="booking-right">
+        <h3 style="font-family:var(--font-display);font-size:1.3rem;font-weight:400;margin-bottom:1.5rem;color:var(--ink)">Reserve Your Trip</h3>
+        <div class="form-group">
+          <label>Destination</label>
+          <select id="bookDest">
+            <option>Santorini, Greece</option>
+            <option>Bali, Indonesia</option>
+            <option>Kyoto, Japan</option>
+            <option>Machu Picchu, Peru</option>
+            <option>Amalfi Coast, Italy</option>
+            <option>Maldives</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group" style="margin-bottom:0">
+            <label>Check In</label>
+            <input type="date" id="bCheckIn" onchange="calcPrice()">
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label>Check Out</label>
+            <input type="date" id="bCheckOut" onchange="calcPrice()">
+          </div>
+        </div>
+        <div class="form-row" style="margin-top:1rem">
+          <div class="form-group" style="margin-bottom:0">
+            <label>Adults</label>
+            <select id="bAdults" onchange="calcPrice()">
+              <option>1</option><option selected>2</option><option>3</option><option>4</option>
+            </select>
+          </div>
+          <div class="form-group" style="margin-bottom:0">
+            <label>Children</label>
+            <select id="bChildren" onchange="calcPrice()">
+              <option selected>0</option><option>1</option><option>2</option><option>3</option>
+            </select>
+          </div>
+        </div>
+        <div class="form-group" style="margin-top:1rem">
+          <label>Full Name</label>
+          <input type="text" placeholder="Your full name">
+        </div>
+        <div class="price-summary" id="priceSummary" style="display:none">
+          <div class="ps-row"><span class="ps-muted">Base package</span><span id="ps-base">$0</span></div>
+          <div class="ps-row"><span class="ps-muted">Guests</span><span id="ps-guests">×1</span></div>
+          <div class="ps-row"><span class="ps-muted">Nights</span><span id="ps-nights">0 nights</span></div>
+          <div class="ps-row total"><span>Total</span><span id="ps-total" style="color:var(--ocean)">$0</span></div>
+        </div>
+        <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.85rem;font-size:.95rem;margin-top:.5rem" onclick="handleBooking()">Confirm Reservation →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<section class="map-section" id="map">
+  <div class="section-inner">
+    <div class="section-header text-center">
+      <p class="section-tag">Explore the Map</p>
+      <h2 class="section-title">Destinations <em>around the globe</em></h2>
+      <p class="section-sub">Click any pin to see travel packages for that destination.</p>
+    </div>
+    <div class="map-container reveal">
+      <div class="map-placeholder">
+        <svg viewBox="0 0 900 420" style="width:100%;height:100%;opacity:.18" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="900" height="420" fill="var(--ocean-light)"/>
+          <ellipse cx="200" cy="160" rx="120" ry="70" fill="var(--ocean)" opacity=".5"/>
+          <ellipse cx="460" cy="130" rx="160" ry="80" fill="var(--ocean)" opacity=".5"/>
+          <ellipse cx="700" cy="180" rx="90" ry="55" fill="var(--ocean)" opacity=".4"/>
+          <ellipse cx="220" cy="290" rx="70" ry="40" fill="var(--ocean)" opacity=".35"/>
+          <ellipse cx="510" cy="300" rx="100" ry="50" fill="var(--ocean)" opacity=".38"/>
+          <ellipse cx="750" cy="310" rx="60" ry="35" fill="var(--ocean)" opacity=".3"/>
+        </svg>
+        <div class="map-overlay-info">
+          <h4>🗺️ Interactive Map</h4>
+          <p>12 destinations across 4 continents. Click a pin to explore.</p>
+        </div>
+        <!-- Map pins -->
+        <div class="map-pin" style="left:38%;top:45%" onclick="showToast('Santorini: From $1,299/person')">
+          <div class="pin-ring"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-label">Santorini</div>
+        </div>
+        <div class="map-pin" style="left:55%;top:38%" onclick="showToast('Kyoto: From $1,599/person')">
+          <div class="pin-ring"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-label">Kyoto</div>
+        </div>
+        <div class="map-pin" style="left:70%;top:55%" onclick="showToast('Bali: From $899/person')">
+          <div class="pin-ring"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-label">Bali</div>
+        </div>
+        <div class="map-pin" style="left:25%;top:65%" onclick="showToast('Machu Picchu: From $1,199/person')">
+          <div class="pin-ring"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-label">Machu Picchu</div>
+        </div>
+        <div class="map-pin" style="left:47%;top:30%" onclick="showToast('Amalfi Coast: From $1,449/person')">
+          <div class="pin-ring"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-label">Amalfi Coast</div>
+        </div>
+        <div class="map-pin" style="left:62%;top:60%" onclick="showToast('Maldives: From $2,099/person')">
+          <div class="pin-ring"></div>
+          <div class="pin-dot"></div>
+          <div class="pin-label">Maldives</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- AI RECOMMENDER -->
+<section class="ai-section" id="ai">
+  <div class="section-inner">
+    <div class="ai-card">
+      <p class="section-tag">✦ AI Recommendations</p>
+      <h2 class="section-title" style="color:var(--white)">Tell us your <em style="font-style:italic">dream trip</em></h2>
+      <p class="section-sub">Describe what you're looking for and our AI will find your perfect match.</p>
+      <div class="ai-input-row">
+        <input type="text" id="aiInput" placeholder="e.g. 'Beach escape with culture, budget $1500, 10 days…'" onkeydown="if(event.key==='Enter')getAIRecs()">
+        <button class="btn btn-coral" onclick="getAIRecs()">Suggest Destinations ✦</button>
+      </div>
+      <div class="ai-loading" id="aiLoading">✦ Finding your perfect destinations…</div>
+      <div class="ai-results" id="aiResults"></div>
+    </div>
+  </div>
+</section>
+
+<!-- BLOG -->
+<section id="blog">
+  <div class="section-inner">
+    <div class="section-row">
+      <div class="section-header" style="margin-bottom:0">
+        <p class="section-tag">Travel Journal</p>
+        <h2 class="section-title">Stories from <em>the road</em></h2>
+      </div>
+      <a href="#" class="btn btn-ghost" style="border-color:var(--ocean);color:var(--ocean)">All Articles →</a>
+    </div>
+    <div class="blog-grid" id="blogGrid"></div>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer id="contact">
+  <div class="footer-top">
+    <div class="footer-brand">
+      <a href="#" class="logo">Wanderlust</a>
+      <p>Your trusted partner for crafting extraordinary travel experiences. From hidden gems to iconic wonders, we make every journey unforgettable.</p>
+      <div class="social-links">
+        <a class="social-link" href="#" title="Instagram">📸</a>
+        <a class="social-link" href="#" title="Twitter">🐦</a>
+        <a class="social-link" href="#" title="Facebook">👍</a>
+        <a class="social-link" href="#" title="YouTube">▶️</a>
+        <a class="social-link" href="#" title="Pinterest">📌</a>
+      </div>
+    </div>
+    <div class="footer-col">
+      <h4>Explore</h4>
+      <ul>
+        <li><a href="#destinations">Destinations</a></li>
+        <li><a href="#hotels">Hotels</a></li>
+        <li><a href="#packages">Packages</a></li>
+        <li><a href="#blog">Travel Blog</a></li>
+        <li><a href="#map">Destination Map</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Company</h4>
+      <ul>
+        <li><a href="#">About Us</a></li>
+        <li><a href="#">Careers</a></li>
+        <li><a href="#">Press Kit</a></li>
+        <li><a href="#">Partners</a></li>
+        <li><a href="#">Sustainability</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Newsletter</h4>
+      <p style="font-size:.85rem;color:rgba(255,255,255,.45);line-height:1.6;margin-bottom:.5rem">Get weekly destination ideas and exclusive deals.</p>
+      <div class="newsletter-input">
+        <input type="email" placeholder="your@email.com" id="newsletterEmail">
+        <button class="newsletter-btn" onclick="subscribeNewsletter()">Subscribe</button>
+      </div>
+      <p style="font-size:.75rem;color:rgba(255,255,255,.28);margin-top:.75rem">📍 123 Travel Lane, Colombo, Sri Lanka<br>📞 +94 11 234 5678 · ✉️ hello@wanderlust.travel</p>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2026 Wanderlust Travel. All rights reserved.</span>
+    <div style="display:flex;gap:1.5rem">
+      <a href="#" style="color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Privacy Policy</a>
+      <a href="#" style="color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Terms of Service</a>
+      <a href="#" style="color:rgba(255,255,255,.35);text-decoration:none;transition:color .2s" onmouseover="this.style.color='rgba(255,255,255,.7)'" onmouseout="this.style.color='rgba(255,255,255,.35)'">Cookie Policy</a>
+    </div>
+  </div>
+</footer>
+
+<!-- AUTH MODAL -->
+<div class="modal-overlay" id="authModal">
+  <div class="modal">
+    <button class="modal-close" onclick="closeModal()">✕</button>
+    <h2 id="modalTitle">Welcome back</h2>
+    <p id="modalSub">Sign in to access your trips and saved destinations.</p>
+    <div class="modal-tabs">
+      <button class="modal-tab active" id="tabLogin" onclick="switchTab('login')">Sign In</button>
+      <button class="modal-tab" id="tabSignup" onclick="switchTab('signup')">Create Account</button>
+    </div>
+    <div class="modal-form active" id="formLogin">
+      <div class="form-group"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="Your password"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem;margin-top:.5rem" onclick="handleAuth('login')">Sign In</button>
+      <div class="divider">or continue with</div>
+      <div class="social-auth">
+        <button class="social-auth-btn" onclick="handleAuth('google')">🌐 Google</button>
+        <button class="social-auth-btn" onclick="handleAuth('apple')">🍎 Apple</button>
+      </div>
+    </div>
+    <div class="modal-form" id="formSignup">
+      <div class="form-row"><div class="form-group" style="margin-bottom:0"><label>First Name</label><input type="text" placeholder="Jane"></div><div class="form-group" style="margin-bottom:0"><label>Last Name</label><input type="text" placeholder="Doe"></div></div>
+      <div class="form-group" style="margin-top:1rem"><label>Email</label><input type="email" placeholder="you@example.com"></div>
+      <div class="form-group"><label>Password</label><input type="password" placeholder="Create a strong password"></div>
+      <button class="btn btn-primary" style="width:100%;justify-content:center;padding:.75rem;margin-top:.25rem" onclick="handleAuth('signup')">Create Free Account</button>
+      <div class="divider">or sign up with</div>
+      <div class="social-auth">
+        <button class="social-auth-btn" onclick="handleAuth('google')">🌐 Google</button>
+        <button class="social-auth-btn" onclick="handleAuth('apple')">🍎 Apple</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"><span class="toast-icon">✓</span><span id="toastMsg"></span></div>
+
+<script>
+// ── DATA ──
+const destinations=[
+  {name:"Santorini",country:"Greece",img:"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80",desc:"Iconic whitewashed villages perched above the azure caldera with the most spectacular sunsets on earth.",price:1299,rating:4.9,reviews:2847,badge:"Most Popular"},
+  {name:"Bali",country:"Indonesia",img:"https://images.unsplash.com/photo-1537996194471-e657df975ab4?w=600&q=80",desc:"Lush rice terraces, ancient temples, and a vibrant culture make this Indonesian paradise truly magical.",price:899,rating:4.8,reviews:3214,badge:"Best Value"},
+  {name:"Kyoto",country:"Japan",img:"https://images.unsplash.com/photo-1528360983277-13d401cdc186?w=600&q=80",desc:"Where ancient Japan breathes — geisha districts, bamboo groves, and a thousand years of tradition.",price:1599,rating:4.9,reviews:1876,badge:"Cultural"},
+  {name:"Machu Picchu",country:"Peru",img:"https://images.unsplash.com/photo-1526392060635-9d6019884377?w=600&q=80",desc:"The lost city of the Incas rises majestically from the Andean mist — a wonder of the ancient world.",price:1199,rating:4.8,reviews:2103,badge:"Adventure"},
+  {name:"Amalfi Coast",country:"Italy",img:"https://images.unsplash.com/photo-1533662635785-fd9569e6ce23?w=600&q=80",desc:"Dramatic cliffs plunging into sapphire waters, dotted with pastel villages and fragrant lemon groves.",price:1449,rating:4.7,reviews:1654,badge:"Romantic"},
+  {name:"Maldives",country:"Maldives",img:"https://images.unsplash.com/photo-1514282401047-d79a71a590e8?w=600&q=80",desc:"Overwater bungalows above crystal-clear lagoons teeming with marine life. Pure paradise.",price:2099,rating:5.0,reviews:987,badge:"Luxury"},
+];
+
+const hotels=[
+  {name:"Villa Aetheria",location:"Oia, Santorini",img:"https://images.unsplash.com/photo-1602343168117-bb8ffe3e2e9f?w=600&q=80",grade:"5★ Boutique",price:389,amenities:["Pool","Spa","Caldera View","Breakfast"]},
+  {name:"Mandapa Reserve",location:"Ubud, Bali",img:"https://images.unsplash.com/photo-1582719508461-905c673771fd?w=600&q=80",grade:"5★ Resort",price:445,amenities:["River Views","Yoga","Butler","Infinity Pool"]},
+  {name:"Hoshino Resorts KAI",location:"Kyoto, Japan",img:"https://images.unsplash.com/photo-1506973035872-a4ec16b8e8d9?w=600&q=80",grade:"5★ Ryokan",price:310,amenities:["Onsen","Tea Ceremony","Garden","Kaiseki"]},
+  {name:"Inkaterra Machu Picchu",location:"Aguas Calientes, Peru",img:"https://images.unsplash.com/photo-1520250497591-112f2f40a3f4?w=600&q=80",grade:"5★ Eco Resort",price:285,amenities:["Cloud Forest","Guided Tours","Breakfast","Spa"]},
+  {name:"Villa Treville",location:"Positano, Italy",img:"https://images.unsplash.com/photo-1564501049412-61c2a3083791?w=600&q=80",grade:"5★ Boutique",price:520,amenities:["Sea Terrace","Concierge","Pool","Fine Dining"]},
+  {name:"Soneva Jani",location:"Noonu Atoll, Maldives",img:"https://images.unsplash.com/photo-1439066615861-d1af74d74000?w=600&q=80",grade:"5★ Luxury",price:2100,amenities:["Water Villa","House Reef","All-inclusive","Cinema"]},
+];
+
+const packages=[
+  {title:"Greek Island Hopping",tag:"7 Days",img:"https://images.unsplash.com/photo-1530841377377-3ff06c0ca713?w=800&q=80",duration:"7 nights",pax:"2+ people",included:"Flights · Hotels · Tours",price:3499},
+  {title:"Bali Spirit Journey",tag:"10 Days",img:"https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?w=800&q=80",duration:"10 nights",pax:"1+ person",included:"Hotels · Transfers · Spa",price:2199},
+  {title:"Japan Sakura Trail",tag:"12 Days",img:"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=800&q=80",duration:"12 nights",pax:"2+ people",included:"Flights · Rail Pass · Hotels",price:4799},
+  {title:"Maldives Honeymoon",tag:"6 Days",img:"https://images.unsplash.com/photo-1507525428034-b723cf961d3e?w=800&q=80",duration:"6 nights",pax:"2 people",included:"Flights · Overwater Villa · Meals",price:6999},
+  {title:"Peruvian Adventure",tag:"8 Days",img:"https://images.unsplash.com/photo-1587595431973-160d0d94add1?w=800&q=80",duration:"8 nights",pax:"1+ person",included:"Flights · Guided Trek · Hotels",price:2899},
+  {title:"Amalfi Coastal Drive",tag:"9 Days",img:"https://images.unsplash.com/photo-1516483638261-f4dbaf036963?w=800&q=80",duration:"9 nights",pax:"2+ people",included:"Car · Hotels · Wine Tastings",price:3899},
+];
+
+const reviews=[
+  {text:"Wanderlust turned my dream trip to Santorini into reality. Every detail was perfect — from the cliffside hotel to the private catamaran sunset cruise.",name:"Sophie Andersen",dest:"Santorini, Greece",rating:5,img:"https://images.unsplash.com/photo-1494790108755-2616b332c02d?w=80&q=80"},
+  {text:"The Bali package exceeded every expectation. The local guides shared hidden gems I'd never have discovered alone. Utterly transformative.",name:"Marcus Chen",dest:"Bali, Indonesia",rating:5,img:"https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=80&q=80"},
+  {text:"Booking was effortless, prices were transparent, and the 24/7 support genuinely helped when our flight was delayed. Will never book travel any other way.",name:"Priya Nair",dest:"Kyoto, Japan",rating:5,img:"https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=80&q=80"},
+  {text:"The Machu Picchu trekking package was the most awe-inspiring experience of my life. Worth every penny and then some.",name:"James O'Brien",dest:"Machu Picchu, Peru",rating:5,img:"https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=80&q=80"},
+  {text:"Our Maldives honeymoon was absolute perfection. The overwater villa, the bioluminescent beach at night — memories for a lifetime.",name:"Elena & Tom Walsh",dest:"Maldives",rating:5,img:"https://images.unsplash.com/photo-1554151228-14d9def656e4?w=80&q=80"},
+  {text:"Italy's Amalfi Coast took my breath away. The wine tastings and sunset dinners were curated impeccably. Grazie, Wanderlust!",name:"Claire Dubois",dest:"Amalfi Coast, Italy",rating:5,img:"https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=80&q=80"},
+];
+
+const blogs=[
+  {cat:"Destination Guide",title:"Santorini Beyond the Postcards: 7 Secrets Only Locals Know",date:"Apr 12, 2026",read:"5 min",img:"https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?w=600&q=80"},
+  {cat:"Travel Tips",title:"The Art of Slow Travel: How to Fall in Love with a Place",date:"Apr 8, 2026",read:"7 min",img:"https://images.unsplash.com/photo-1476514525535-07fb3b4ae5f1?w=600&q=80"},
+  {cat:"Culture",title:"Cherry Blossoms & Quiet Temples: A Week in Kyoto's Hidden Side",date:"Mar 30, 2026",read:"6 min",img:"https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?w=600&q=80"},
+];
+
+const aiSuggestions={
+  beach:["🌊 Maldives — Pristine lagoons, zero crowds, maximum tranquility","🐚 Bali — Surf culture meets spiritual serenity","🌅 Santorini — Dramatic beauty above the Aegean"],
+  culture:["⛩️ Kyoto, Japan — Ancient temples and living traditions","🏛️ Rome, Italy — 3,000 years of history in every piazza","🕌 Marrakech, Morocco — A sensory feast of color and craft"],
+  adventure:["🏔️ Machu Picchu — The Inca Trail to a lost city","🦁 Serengeti — Witness the Great Migration","🏄 Costa Rica — Rainforest, volcanoes and world-class surf"],
+  budget:["🌴 Bali — $899/person, incredible value","🇹🇭 Chiang Mai, Thailand — Culture-rich and wallet-friendly","🇵🇹 Lisbon, Portugal — Europe's most affordable gem"],
+};
+
+// ── RENDER ──
+function starsHTML(r){return'★'.repeat(Math.floor(r))+(r%1?'½':'')}
+function renderDestinations(){
+  const g=document.getElementById('destGrid');
+  g.innerHTML=destinations.map((d,i)=>`
+  <div class="dest-card reveal reveal-delay-${(i%4)+1}">
+    <div class="dest-img">
+      <img src="${d.img}" alt="${d.name}" loading="lazy">
+      <div class="dest-badge">${d.badge}</div>
+      <div class="dest-fav" onclick="toggleFav(this)">♡</div>
+    </div>
+    <div class="dest-body">
+      <div class="dest-location">📍 ${d.country}</div>
+      <div class="dest-name">${d.name}</div>
+      <div class="dest-desc">${d.desc}</div>
+      <div class="dest-footer">
+        <div>
+          <div class="stars">${'<span class="star">★</span>'.repeat(Math.floor(d.rating))}<span class="rating-num">${d.rating} (${d.reviews.toLocaleString()})</span></div>
+        </div>
+        <div style="text-align:right">
+          <span class="price-from">from</span>
+          <div class="price-tag">$${d.price.toLocaleString()}</div>
+        </div>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+function renderHotels(){
+  const g=document.getElementById('hotelsGrid');
+  g.innerHTML=hotels.map((h,i)=>`
+  <div class="hotel-card reveal reveal-delay-${(i%3)+1}">
+    <div class="hotel-img">
+      <img src="${h.img}" alt="${h.name}" loading="lazy">
+      <div class="hotel-grade">${h.grade}</div>
+    </div>
+    <div class="hotel-body">
+      <div class="hotel-name">${h.name}</div>
+      <div class="hotel-loc">📍 ${h.location}</div>
+      <div class="amenities">${h.amenities.map(a=>`<span class="amenity">${a}</span>`).join('')}</div>
+      <div class="hotel-footer">
+        <div>
+          <div class="stars">${'<span class="star">★</span>'.repeat(5)}</div>
+        </div>
+        <div style="text-align:right">
+          <span class="hotel-night">per night</span>
+          <div class="hotel-price">$${h.price}</div>
+        </div>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+function renderPackages(){
+  const g=document.getElementById('pkgGrid');
+  g.innerHTML=packages.map((p,i)=>`
+  <div class="pkg-card reveal reveal-delay-${(i%3)+1}" onclick="scrollToBooking('${p.title}')">
+    <div class="pkg-img" style="background-image:url('${p.img}')"></div>
+    <div class="pkg-overlay"></div>
+    <div class="pkg-content">
+      <span class="pkg-tag">${p.tag}</span>
+      <div class="pkg-title">${p.title}</div>
+      <div class="pkg-meta">
+        <span>🌙 ${p.duration}</span>
+        <span>👥 ${p.pax}</span>
+        <span>✓ ${p.included}</span>
+      </div>
+      <div class="pkg-footer">
+        <div>
+          <span class="pkg-per">from per person</span>
+          <div class="pkg-price">$${p.price.toLocaleString()}</div>
+        </div>
+        <button class="btn" style="border-color:rgba(255,255,255,.5);color:var(--white);padding:.45rem 1rem;font-size:.82rem" onclick="event.stopPropagation();scrollToBooking('${p.title}')">Book Now</button>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+function renderReviews(){
+  const g=document.getElementById('reviewsGrid');
+  g.innerHTML=reviews.map((r,i)=>`
+  <div class="review-card reveal reveal-delay-${(i%3)+1}">
+    <div class="review-stars">${'<span class="star">★</span>'.repeat(r.rating)}</div>
+    <p class="review-text">"${r.text}"</p>
+    <div class="reviewer">
+      <img src="${r.img}" alt="${r.name}" class="reviewer-avatar" loading="lazy">
+      <div>
+        <div class="reviewer-name">${r.name}</div>
+        <div class="reviewer-dest">✈️ ${r.dest}</div>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+function renderBlog(){
+  const g=document.getElementById('blogGrid');
+  g.innerHTML=blogs.map((b,i)=>`
+  <div class="blog-card reveal reveal-delay-${i+1}" onclick="showToast('Opening: ${b.title}')">
+    <div class="blog-img"><img src="${b.img}" alt="${b.title}" loading="lazy"></div>
+    <div class="blog-body">
+      <div class="blog-cat">${b.cat}</div>
+      <div class="blog-title">${b.title}</div>
+      <div class="blog-meta">
+        <span>${b.date}</span>
+        <span class="blog-meta-dot"></span>
+        <span>${b.read} read</span>
+      </div>
+    </div>
+  </div>`).join('');
+}
+
+// ── INTERACTIONS ──
+function toggleFav(el){el.classList.toggle('liked');el.textContent=el.classList.contains('liked')?'♥':'♡';showToast(el.classList.contains('liked')?'Added to favourites!':'Removed from favourites')}
+
+function handleSearch(){
+  const v=document.getElementById('searchInput').value;
+  showToast(v?`Searching for "${v}"…`:'Please enter a destination');
+}
+
+function scrollToBooking(title){
+  document.querySelector('#booking').scrollIntoView({behavior:'smooth'});
+  if(title){document.getElementById('bookDest').querySelector('option:first-child').selected=true;showToast(`Loading: ${title}`)}
+}
+
+function calcPrice(){
+  const ci=document.getElementById('bCheckIn').value;
+  const co=document.getElementById('bCheckOut').value;
+  const adults=parseInt(document.getElementById('bAdults').value)||2;
+  const children=parseInt(document.getElementById('bChildren').value)||0;
+  if(!ci||!co)return;
+  const nights=Math.max(0,Math.round((new Date(co)-new Date(ci))/(86400000)));
+  if(nights<=0)return;
+  const base=1299;const guests=adults+(children*.5);const total=Math.round(base*guests*(nights/7));
+  document.getElementById('ps-base').textContent=`$${base.toLocaleString()}`;
+  document.getElementById('ps-guests').textContent=`×${guests}`;
+  document.getElementById('ps-nights').textContent=`${nights} nights`;
+  document.getElementById('ps-total').textContent=`$${total.toLocaleString()}`;
+  document.getElementById('priceSummary').style.display='block';
+}
+
+function handleBooking(){
+  const dest=document.getElementById('bookDest').value;
+  showToast(`🎉 Booking confirmed for ${dest}!`);
+}
+
+// ── AI RECOMMENDATIONS ──
+async function getAIRecs(){
+  const query=document.getElementById('aiInput').value.trim();
+  if(!query){showToast('Please describe your dream trip first');return}
+  const loading=document.getElementById('aiLoading');
+  const results=document.getElementById('aiResults');
+  loading.classList.add('show');results.classList.remove('show');
+  try{
+    const res=await fetch('https://api.anthropic.com/v1/messages',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({
+        model:'claude-sonnet-4-20250514',
+        max_tokens:1000,
+        messages:[{role:'user',content:`You are a travel recommendation AI. Based on the user's request: "${query}", suggest exactly 3 travel destinations. Return ONLY valid JSON array with no markdown, no backticks, no explanation. Format: [{"emoji":"🌊","name":"Bali, Indonesia","reason":"2-sentence reason why this matches their request","match":95}]. Match is a percentage 70-99.`}]
+      })
+    });
+    const data=await res.json();
+    const text=data.content.map(i=>i.text||'').join('');
+    const clean=text.replace(/```json|```/g,'').trim();
+    const recs=JSON.parse(clean);
+    results.innerHTML=recs.map(r=>`
+    <div class="ai-result-item" onclick="showToast('Exploring ${r.name}…')">
+      <div class="ai-result-emoji">${r.emoji}</div>
+      <div class="ai-result-info">
+        <div class="ai-result-name">${r.name}</div>
+        <div class="ai-result-why">${r.reason}</div>
+      </div>
+      <div class="ai-result-score">${r.match}% match</div>
+    </div>`).join('');
+    results.classList.add('show');
+  }catch(e){
+    const key=Object.keys(aiSuggestions).find(k=>query.toLowerCase().includes(k))||'beach';
+    results.innerHTML=aiSuggestions[key].map(s=>`<div class="ai-result-item"><div class="ai-result-emoji">${s[0]}</div><div class="ai-result-info"><div class="ai-result-name">${s.slice(2)}</div></div></div>`).join('');
+    results.classList.add('show');
+  }
+  loading.classList.remove('show');
+}
+
+// ── MODAL ──
+function openModal(tab){
+  document.getElementById('authModal').classList.add('open');
+  switchTab(tab||'login');
+  document.body.style.overflow='hidden';
+}
+function closeModal(){document.getElementById('authModal').classList.remove('open');document.body.style.overflow=''}
+document.getElementById('authModal').addEventListener('click',function(e){if(e.target===this)closeModal()});
+function switchTab(tab){
+  document.getElementById('tabLogin').classList.toggle('active',tab==='login');
+  document.getElementById('tabSignup').classList.toggle('active',tab==='signup');
+  document.getElementById('formLogin').classList.toggle('active',tab==='login');
+  document.getElementById('formSignup').classList.toggle('active',tab==='signup');
+  document.getElementById('modalTitle').textContent=tab==='login'?'Welcome back':'Join Wanderlust';
+  document.getElementById('modalSub').textContent=tab==='login'?'Sign in to access your trips and saved destinations.':'Create your free account and start exploring.';
+}
+function handleAuth(type){
+  const msgs={login:'Welcome back! 🎉',signup:'Account created — welcome aboard! ✈️',google:'Signing in with Google…',apple:'Signing in with Apple…'};
+  closeModal();showToast(msgs[type]||'Signed in!');
+}
+
+// ── TOAST ──
+let toastTimer;
+function showToast(msg){
+  clearTimeout(toastTimer);
+  const t=document.getElementById('toast');
+  document.getElementById('toastMsg').textContent=msg;
+  t.classList.add('show');
+  toastTimer=setTimeout(()=>t.classList.remove('show'),3200);
+}
+
+// ── NEWSLETTER ──
+function subscribeNewsletter(){
+  const email=document.getElementById('newsletterEmail').value;
+  if(!email||!email.includes('@')){showToast('Please enter a valid email');return}
+  showToast('Subscribed! Expect inspiration in your inbox ✉️');
+  document.getElementById('newsletterEmail').value='';
+}
+
+// ── NAV ──
+window.addEventListener('scroll',()=>{
+  document.getElementById('navbar').classList.toggle('scrolled',window.scrollY>60);
+});
+
+function toggleMobileMenu(){document.getElementById('mobileMenu').classList.toggle('open')}
+function closeMobileMenu(){document.getElementById('mobileMenu').classList.remove('open')}
+
+// ── HERO SLIDESHOW ──
+let currentSlide=0;
+const slides=document.querySelectorAll('.slide');
+const dots=document.querySelectorAll('.dot');
+function goToSlide(n){
+  slides[currentSlide].classList.remove('active');
+  dots[currentSlide].classList.remove('active');
+  currentSlide=n;
+  slides[currentSlide].classList.add('active');
+  dots[currentSlide].classList.add('active');
+}
+setInterval(()=>goToSlide((currentSlide+1)%3),5500);
+
+// ── REVEAL ON SCROLL ──
+const revealObserver=new IntersectionObserver((entries)=>{
+  entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('visible')});
+},{threshold:.1,rootMargin:'0px 0px -40px 0px'});
+function observeAll(){document.querySelectorAll('.reveal').forEach(el=>revealObserver.observe(el))}
+
+// ── INIT ──
+renderDestinations();renderHotels();renderPackages();renderReviews();renderBlog();
+setTimeout(observeAll,100);
+
+// Set default dates
+const today=new Date();
+const nextWeek=new Date(today);nextWeek.setDate(today.getDate()+7);
+const twoWeeks=new Date(today);twoWeeks.setDate(today.getDate()+14);
+[document.getElementById('checkIn'),document.getElementById('bCheckIn')].forEach(i=>{if(i)i.value=nextWeek.toISOString().split('T')[0]});
+[document.getElementById('checkOut'),document.getElementById('bCheckOut')].forEach(i=>{if(i)i.value=twoWeeks.toISOString().split('T')[0]});
+calcPrice();
+</script>
+</body>
+</html>
